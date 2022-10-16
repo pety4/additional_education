@@ -1,8 +1,8 @@
-def stringToArray(string):
-    return [int(i) for i in (string.split(','))]
+def strToArray(str):
+    return [int(i) for i in (str.split(','))]
 
 
-def arrayToString(array):
+def arrayToStr(array):
     sumStr = ''
     for i in array:
         sumStr += str(i) + ','
@@ -19,14 +19,14 @@ def histDistance(hist1, hist2) -> float:
 
 def writeHistToFile(hist1, hist2):
     with open('hist.txt', 'w') as file:
-        file.write(arrayToString(hist1) + '\n' + arrayToString(hist2))
+        file.write(arrayToStr(hist1) + '\n' + arrayToStr(hist2))
 
 
 def readHistFromFile():
     with open('hist.txt', 'r') as file:
         hist1 = file.readline()
         hist2 = file.readline()
-    return stringToArray(hist1[0:len(hist1) - 1]), stringToArray(hist2)
+    return strToArray(hist1[0:len(hist1) - 1]), strToArray(hist2)
 
 
 def triangle(a):
@@ -34,5 +34,3 @@ def triangle(a):
     for i in range(a + 1):
         triangleArray[i] = ' ' * (a - i) + '*' * (2 * i + 1)
         print(triangleArray[i])
-
-triangle(5)
