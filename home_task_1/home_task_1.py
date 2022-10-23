@@ -1,13 +1,13 @@
 def arrayRandomCreate():
     import random
-    array = [int(random.randint(0, 999)) for i in range(1000000)]
+    array = [int(random.randint(0, 999)) for i in range(100000)]
     return array
 
 
 def histogramCreate(array):
     histogram = [0] * 10
     for i in array:
-        histogram[int(array[i] / 100)] += 1
+        histogram[int(i / 100)] += 1
     return histogram
 
 
