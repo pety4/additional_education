@@ -1,4 +1,8 @@
 import sys
+import random
+
+import numpy as np
+
 
 def histDistance(hist1, hist2) -> float:
     from math import sqrt
