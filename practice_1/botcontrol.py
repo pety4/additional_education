@@ -62,12 +62,12 @@ if __name__ == '__main__':
             if df < 0:
                 cmd = "right"
                 v = abs(df)
-                client.publish(message.format(cmd, v),0)
+                client.publish(message.format(cmd, v))
                 time.sleep(v*bot_1.omega)
                 bot_1.currentAngle += df
             cmd = "forward"
             v = distance
-            client.publish(message.format(cmd, v),1)
+            client.publish(message.format(cmd, v))
             time.sleep(v*bot_1.v)
         else:
 
@@ -76,18 +76,18 @@ if __name__ == '__main__':
                 if df_reverse > 0:
                     cmd = "right"
                     v = df_reverse
-                    client.publish(message.format(cmd, v),2)
+                    client.publish(message.format(cmd, v))
                     time.sleep(v * bot_1.omega)
                     bot_1.currentAngle += df
                 if df_reverse < 0:
                     cmd = "left"
                     v = df_reverse
-                    client.publish(message.format(cmd, v),3)
+                    client.publish(message.format(cmd, v))
                     time.sleep(v * bot_1.omega)
                     bot_1.currentAngle += df_reverse
                 cmd = "back"
                 v = distance
-                client.publish(mqtt_theme,message.format(cmd, v),4)
+                client.publish(mqtt_theme,message.format(cmd, v))
                 time.sleep(v * bot_1.omega)
 
     message = """'cmd':'stop'"""
