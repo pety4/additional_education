@@ -83,14 +83,14 @@ if __name__ == '__main__':
                     cmd = "left"
                     v = df_reverse
                     client.publish(message.format(cmd, v))
-                    time.sleep(v * bot_1.omega)
+                    #time.sleep(v * bot_1.omega)
                     bot_1.currentAngle += df_reverse
                 cmd = "back"
                 v = distance
                 client.publish(mqtt_theme,message.format(cmd, v))
-                time.sleep(v * bot_1.omega)
+                time.sleep(v * bot_1.v)
 
     message = """'cmd':'stop'"""
-    client.publish(mqtt_theme, message,5)
+    client.publish(mqtt_theme, message)
     client.loop_stop()
-    client.disconnect()
+    client.disconnect()+
