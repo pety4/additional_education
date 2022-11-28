@@ -93,4 +93,4 @@ if __name__ == '__main__':
     message = """'cmd':'stop'"""
     client.publish(mqtt_theme, message)
     client.loop_stop()
-    client.disconnect()+
+    client.disconnect()
