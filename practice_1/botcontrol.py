@@ -47,6 +47,7 @@ if __name__ == '__main__':
     print("Connecting to brocker ", mqtt_ip)
     client.connect(mqtt_ip, mqtt_port)
     client.loop_start()
+    print("start loop")
     message = """'cmd':'{}''val':'{}'"""
     for i in range(1, len(path)):
         bot_1.coords = path[i - 1]
@@ -57,18 +58,18 @@ if __name__ == '__main__':
                 cmd = "left"
                 v = df
                 client.publish(message.format(cmd, v))
-                time.sleep(v*bot_1.omega)
+                time.sleep(v/bot_1.omega)
                 bot_1.currentAngle += df
             if df < 0:
                 cmd = "right"
                 v = abs(df)
                 client.publish(message.format(cmd, v))
-                time.sleep(v*bot_1.omega)
+                time.sleep(v/bot_1.omega)
                 bot_1.currentAngle += df
             cmd = "forward"
             v = distance
             client.publish(message.format(cmd, v))
-            time.sleep(v*bot_1.v)
+            time.sleep(v/bot_1.v)
         else:
 
             if df > 90 or df < -90:
@@ -77,18 +78,18 @@ if __name__ == '__main__':
                     cmd = "right"
                     v = df_reverse
                     client.publish(message.format(cmd, v))
-                    time.sleep(v * bot_1.omega)
+                    time.sleep(v / bot_1.omega)
                     bot_1.currentAngle += df
                 if df_reverse < 0:
                     cmd = "left"
                     v = df_reverse
                     client.publish(message.format(cmd, v))
-                    time.sleep(v * bot_1.omega)
+                    time.sleep(v / bot_1.omega)
                     bot_1.currentAngle += df_reverse
                 cmd = "back"
                 v = distance
                 client.publish(mqtt_theme,message.format(cmd, v))
-                time.sleep(v * bot_1.v)
+                time.sleep(v / bot_1.v)
 
     message = """'cmd':'stop'"""
     client.publish(mqtt_theme, message)
