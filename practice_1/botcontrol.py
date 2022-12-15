@@ -1,3 +1,5 @@
+#создать отдельные функции
+
 import sys
 import os
 import time
@@ -46,7 +48,6 @@ if __name__ == '__main__':
     client.on_connect = on_connect
     print("Connecting to brocker ", mqtt_ip)
     client.connect(mqtt_ip, mqtt_port)
-    client.loop_start()
     print("start loop")
     message = """'cmd':'{}''val':'{}'"""
     for i in range(1, len(path)):
@@ -56,15 +57,15 @@ if __name__ == '__main__':
         if -90 <= df <= 90:
             if df > 0:
                 cmd = "left"
-                v = df
+                v = df/bot_1.omega
                 client.publish(message.format(cmd, v))
-                time.sleep(v/bot_1.omega)
+                time.sleep(v)
                 bot_1.currentAngle += df
             if df < 0:
                 cmd = "right"
-                v = abs(df)
+                v = abs(df/bot_1.omega)
                 client.publish(message.format(cmd, v))
-                time.sleep(v/bot_1.omega)
+                time.sleep(v)
                 bot_1.currentAngle += df
             cmd = "forward"
             v = distance
@@ -76,15 +77,15 @@ if __name__ == '__main__':
                 df_reverse = bot_1.angle(-path[i])
                 if df_reverse > 0:
                     cmd = "right"
-                    v = df_reverse
+                    v = df_reverse/ bot_1.omega
                     client.publish(message.format(cmd, v))
-                    time.sleep(v / bot_1.omega)
+                    time.sleep(v)
                     bot_1.currentAngle += df
                 if df_reverse < 0:
                     cmd = "left"
-                    v = df_reverse
+                    v = df_reverse/ bot_1.omega
                     client.publish(message.format(cmd, v))
-                    time.sleep(v / bot_1.omega)
+                    time.sleep(v)
                     bot_1.currentAngle += df_reverse
                 cmd = "back"
                 v = distance
@@ -93,5 +94,5 @@ if __name__ == '__main__':
 
     message = """'cmd':'stop'"""
     client.publish(mqtt_theme, message)
-    client.loop_stop()
     client.disconnect()
+#python botcontrol.py 127.0.0.1 1883 abotcmd1 1.0 30.0 path.txt
