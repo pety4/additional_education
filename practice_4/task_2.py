@@ -2,10 +2,10 @@ import git
 with open("git_url.txt") as source:
     git_url = source.readlines()
 result={}
+git_url=[url.rstrip() for url in git_url]
 for url in git_url:
-    url.rstrip()
     try:
-        git.Repo.clone_from(url,f"{url[url.rfind('/')+1]}-https")
+        git.Repo.clone_from(url, f"{url[url.rfind('/')+1:]}-https")
         result[url] = 'OK'
     except:
         result[url]='FAIL'
