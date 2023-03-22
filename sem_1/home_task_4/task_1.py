@@ -24,7 +24,7 @@ print("in Main loop")
 if not os.path.exists("mqtt_message.txt"):
     print("file not found")
 else:
-    file=open("mqtt_message.txt","r")
+    file=open("mqtt_message.txt", "r")
     message=file.read().splitlines()
     file.close()
 for string in message:
