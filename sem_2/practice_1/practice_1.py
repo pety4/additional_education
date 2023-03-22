@@ -1,7 +1,7 @@
 import nltk
-
 nltk.download('stopwords')
 import string
+from math import sqrt
 
 
 def removeSpecCharsFromText(text):
